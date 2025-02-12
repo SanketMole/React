@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import { TodoProvider } from './context'
 import './App.css'
-import { TodoForm } from './components'
+import TodoForm from './components/TodoForm'
+import TodoItem from './components/TodoItem'
+
+
 
 function App() {
   const [todos, setTodos] = useState([])
@@ -10,7 +13,7 @@ function App() {
     setTodos((prev) => [{id: Date.now(), ...todo} , ...prev] )
   }
 
-  const updatedTodo = (id, todo) => {
+  const updateTodo = (id, todo) => {
     setTodos((prev) => prev.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo )))
 
     //Map can be simplified as
@@ -40,24 +43,6 @@ function App() {
     }
   }, [])
 
-  // useEffect(() => {
-  //   try {
-  //     const storedTodos = localStorage.getItem("todos");
-  //     if (storedTodos) {
-  //       const parsedTodos = JSON.parse(storedTodos);
-  //       if (Array.isArray(parsedTodos)) {
-  //         setTodos(parsedTodos);
-  //       } else {
-  //         console.error("Invalid data format in localStorage");
-  //         localStorage.removeItem("todos"); // Clear invalid data
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error("Error parsing todos from localStorage:", error);
-  //     localStorage.removeItem("todos"); // Remove corrupted data
-  //   }
-  // }, []);
-  
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos))
@@ -66,7 +51,7 @@ function App() {
 
 
   return (
-    <TodoProvider value={{todos, addTodo, updatedTodo, deleteTodo, toggleComplete}}>
+    <TodoProvider value={{todos, addTodo, updateTodo, deleteTodo, toggleComplete}}>
       <div className="bg-[#172842] min-h-screen py-8">
                 <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
                     <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
@@ -80,7 +65,7 @@ function App() {
                           <div key={todo.id}
                           className='w-full'
                           > 
-                            <TodoForm todo={todo} />
+                            <TodoItem todo={todo} />
                           </div>
                         ))}
                     </div>

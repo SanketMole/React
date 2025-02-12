@@ -12,7 +12,7 @@ function TodoForm() {
         // addTodo({id: Date.now(), todo: todo, completed: false}) 
         // Or
         addTodo({todo, completed: false})
-        setTodo("");
+        setTodo("")
     }
 
     return (
