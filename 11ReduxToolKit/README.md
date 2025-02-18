@@ -1,4 +1,10 @@
 <!-- //Notes -->
+**Redux** is an independent state management library. 
+Bridge to implement Redux in React is **react-redux**. 
+**redux-toolkit** is a better version of Redux, making more optimized for user. 
+
+
+
 
 `React-Redux`: 
 **Connecting Redux with React** : 
