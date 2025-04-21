@@ -1,10 +1,12 @@
 import conf from '../conf/conf';
-import {Client, ID, Databases, Storage, Query, Account} from "appwrite";
+import {Client, ID, Databases, Storage, Query} from "appwrite";
 
 export class Service{
     client = new Client();
     databases;
     bucket;
+    
+
     constructor(){
         this.client 
             .setEndpoint(conf.appwriteUrl)
@@ -131,4 +133,11 @@ export class Service{
 }
 
 const service = new Service()
+console.log("✅ Appwrite ENV Values:");
+console.log("VITE_APPWRITE_URL:", import.meta.env.VITE_APPWRITE_URL);
+console.log("VITE_PROJECT_ID:", import.meta.env.VITE_PROJECT_ID);
+console.log("VITE_DATABASE_ID:", import.meta.env.VITE_DATABASE_ID);
+console.log("VITE_COLLECTION_ID:", import.meta.env.VITE_COLLECTION_ID);
+console.log("VITE_BUCKET_ID:", import.meta.env.VITE_BUCKET_ID);
+
 export default service 
